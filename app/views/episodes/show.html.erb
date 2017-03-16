@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h3>
-  <%= @episode.name %><br>
-  <small><%= @episode.series.name if @episode.series %></small>
+  <%= @view_model.episode_name %><br>
+  <small><%= @view_model.series_name %></small>
 </h3>
 
 <div class="canvas" style="font: 8px/4px monospace">
@@ -10,27 +10,26 @@
 </div>
 
 
-<% @episode.critters.to_i.times do %>
-  <% @critter_count = @critter_count.to_i + 1 %>
+<% @view_model.critter_count.times do |index| %>
   <%= image_tag "squirrel.jpg",
     class: 'critter-background',
     width: 100,
     style: "
       position: fixed;
-      top:  #{150 * @critter_count}px;
+      top:  #{150 * (index + 1)}px;
       left: -100px;
     "
   %>
 <% end %>
 
 <div class="forest">
-  <% 1.upto(@episode.happy_little_trees.to_i) do |number| %>
-    <% if @episode.cabin? && number == @episode.happy_little_trees/3 %>
+  <% @view_model.happy_little_tree_count.times do |index| %>
+    <% if @view_model.draw_cabin? && index == (@view_model.happy_little_tree_count / 3 - 1) %>
       🏡
     <% end %>
     🌲
   <% end %>
 </div>
 
-<%= link_to 'Edit', edit_episode_path(@episode) %> |
-<%= link_to 'Back', episodes_path %>
+<%= link_to 'Edit', @view_model.edit_path %> |
+<%= link_to 'Back', @view_model.back_path %>
