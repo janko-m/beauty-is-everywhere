@@ -8,6 +8,7 @@ class EpisodesController < ApplicationController
 
   # GET /episodes/1
   def show
+    @view_model = Episodes::ShowViewModel.new(@episode)
   end
 
   # GET /episodes/new

@@ -6,9 +6,7 @@
 </h3>
 
 <div class="canvas" style="font: 8px/4px monospace">
-  <% if @episode.snowy_mountains.present? %>
-    <%= paint_3peak_mountain %>
-  <% end %>
+  <%= @view_model.paint_3peak_mountain %>
 </div>
 
 
